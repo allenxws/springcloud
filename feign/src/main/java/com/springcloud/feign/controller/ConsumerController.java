@@ -1,21 +1,21 @@
-package com.springcloud.consumer.controller;
+package com.springcloud.feign.controller;
 
-import com.springcloud.consumer.service.ConsumerService;
+import com.springcloud.feign.client.ComputeClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by xuwushun on 2016/11/25.
+ * Created by xuwushun on 2016/11/29.
  */
 @RestController
 public class ConsumerController {
 	@Autowired
-	ConsumerService consumerService;
+	ComputeClient computeClient;
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String add() {
-		return consumerService.addService();
+	public Integer add() {
+		return computeClient.add(10, 20);
 	}
 }
